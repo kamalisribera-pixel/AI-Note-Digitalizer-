@@ -32,6 +32,7 @@ blocks = [
         word_count=2,
         uppercase_ratio=1.0,
         has_numbering=True,
+        numbering_type="chapter",
         gap_below=30,
         center_offset=0
     )
@@ -42,4 +43,10 @@ blocks = detect_headings(blocks)
 
 
 for block in blocks:
-    print(block.text, "→", block.block_type)
+    print(
+        block.text,
+        "→",
+        block.block_type,
+        "Level:",
+        block.heading_level
+    )

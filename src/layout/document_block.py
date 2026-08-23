@@ -22,6 +22,7 @@ class DocumentBlock:
     char_count: int = 0
     uppercase_ratio: float = 0.0
     has_numbering: bool = False
+    numbering_type: str = ""
 
     # Layout features
     gap_above: int = 0
@@ -50,4 +51,6 @@ class DocumentBlock:
             "center_offset": self.center_offset,
             "reading_order": self.reading_order,
             "alignment": self.alignment,
+            "has_numbering": self.has_numbering,
+            "numbering_type": self.numbering_type,
         }

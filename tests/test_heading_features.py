@@ -36,4 +36,6 @@ for block in blocks:
     print("Gap above:", block.gap_above)
     print("Gap below:", block.gap_below)
     print("Center offset:", block.center_offset)
+    print("Has numbering:", block.has_numbering)
+    print("Numbering type:", block.numbering_type)
     print("----------------")

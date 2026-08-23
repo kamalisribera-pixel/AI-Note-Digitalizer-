@@ -1,12 +1,12 @@
-
 import re
+
 def calculate_heading_features(blocks, page_width):
     # Sort blocks from top to bottom
     blocks = sorted(
         blocks,
         key=lambda block: block.bbox[1]
     )
-    
+
     for i, block in enumerate(blocks):
 
         x1, y1, x2, y2 = block.bbox
@@ -36,23 +36,31 @@ def calculate_heading_features(blocks, page_width):
 
         block.width_ratio = block.width / page_width
 
-        block.has_numbering = detect_numbering(
+        has_numbering, numbering_type = detect_numbering(
             block.text
         )
 
+        block.has_numbering = has_numbering
+        block.numbering_type = numbering_type
     return blocks
+
+import re
+
+
 def detect_numbering(text):
-    patterns = [
-        r"^\d+\.",
-        r"^\d+\.\d+",
-        r"^chapter\s+\d+",
-        r"^section\s+\d+",
-        r"^[IVXLCDM]+\.",
-        r"^[A-Z]\."
-    ]
 
-    for pattern in patterns:
+    text = text.strip()
+
+    patterns = {
+        "chapter": r"^chapter\s+\d+",
+        "decimal": r"^\d+\.\d+",
+        "number": r"^\d+\.",
+        "roman": r"^[IVXLCDM]+\.",
+        "letter": r"^[A-Z]\."
+    }
+
+    for name, pattern in patterns.items():
         if re.match(pattern, text, re.IGNORECASE):
-            return True
+            return True, name
 
-    return False
+    return False, ""

@@ -36,11 +36,40 @@ def detect_headings(blocks):
             score += 1
 
 
+        strong_signal = (
+            block.uppercase_ratio >= 0.5
+            or block.has_numbering
+            or block.center_offset <= 30
+        )
         # Final decision
-        if score >= 5:
+        if block.word_count > 8:
+            block.block_type = "paragraph"
+            block.heading_level = 0
+            continue
+
+        # Strong structural rules first
+        if block.numbering_type == "chapter":
             block.block_type = "heading"
+            block.heading_level = 1
+
+        elif block.numbering_type == "decimal":
+            block.block_type = "heading"
+            block.heading_level = 3
+
+        # Normal heading detection
+        elif score >= 5 and strong_signal:
+
+            block.block_type = "heading"
+
+            if score >= 6:
+                block.heading_level = 2
+            else:
+                block.heading_level = 3
+
+        # Paragraph
         else:
             block.block_type = "paragraph"
+            block.heading_level = 0
 
 
     return blocks
