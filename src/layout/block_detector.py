@@ -1,4 +1,4 @@
-from .structure import DocumentBlock
+from .text_block import TextBlock
 
 def detect_blocks(ocr_results):
     blocks = []

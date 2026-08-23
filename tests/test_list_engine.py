@@ -1,6 +1,6 @@
 from src.document.lists.list_engine import ListEngine
 from src.document.paragraph.merged_line import MergedLine
-from src.layout.structure import TextBlock
+from layout.text_block import TextBlock
 def test_list_engine():
 
     lines = [

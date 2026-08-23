@@ -1,5 +1,5 @@
 from src.document.paragraph.line_merger import LineMerger
-from src.layout.structure import TextBlock
+from layout.text_block import TextBlock
 
 
 def test_line_merger():

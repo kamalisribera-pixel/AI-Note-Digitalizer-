@@ -1,4 +1,4 @@
-from src.layout.structure import DocumentBlock
+from layout.text_block import DocumentBlock
 from src.layout.paragraph import reconstruct_paragraphs
 
 
