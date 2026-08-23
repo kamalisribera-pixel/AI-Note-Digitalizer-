@@ -1,4 +1,4 @@
-from .models import TableRegion
+from .table_block import TableRegion
 
 
 class TableDetector:
